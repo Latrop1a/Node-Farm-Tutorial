@@ -58,10 +58,10 @@ const replaceTemplate = (template, product) => {
 };
 
 const server = http.createServer((req, res) => {
-  const pathName = req.url;
+  const { query, pathname } = url.parse(req.url, true);
 
   // OVERVIEW PAGE
-  if (pathName === '/overview' || pathName === '/') {
+  if (pathname === '/overview' || pathname === '/') {
     res.writeHead(200, { 'Content-type': 'text/html' });
     const cardsHTML = dataObj
       .map((el) => replaceTemplate(tempCard, el))
@@ -70,13 +70,13 @@ const server = http.createServer((req, res) => {
     res.end(overview);
 
     // PRODUCT PAGES
-  } else if (pathName.includes('/product')) {
-    const id = pathName.split('=');
-    const productHTML = replaceTemplate(tempProduct, dataObj[id[1]]);
+  } else if (pathname === '/product') {
+    const product = dataObj[query.id];
+    const productHTML = replaceTemplate(tempProduct, product);
     res.end(productHTML);
 
     // API
-  } else if (pathName === '/api') {
+  } else if (pathname === '/api') {
     res.writeHead(200, { 'Content-type': 'application/json' });
     res.end(data);
 
