@@ -4,6 +4,15 @@ const url = require('url');
 const replaceTemplate = require('./modules/replaceTemplate');
 const slugify = require('slugify');
 
+const euler1 = require('./modules/euler1');
+const euler2 = require('./modules/euler2');
+const euler3 = require('./modules/euler3');
+const euler4 = require('./modules/euler4');
+const euler5 = require('./modules/euler5');
+const euler6 = require('./modules/euler6');
+const euler7 = require('./modules/euler7');
+const euler8 = require('./modules/euler8');
+
 //////////////////////
 //Files
 /* 
@@ -87,3 +96,12 @@ const server = http.createServer((req, res) => {
 server.listen(8000, '127.0.0.1', () => {
   console.log('Listening to requests on port 8000');
 });
+
+//euler1();
+//euler2();
+//euler3(600851475143);
+euler4(2);
+//euler5(1, 20);
+//euler6();
+//euler7(10001);
+euler8();
