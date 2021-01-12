@@ -12,6 +12,9 @@ const euler5 = require('./modules/euler5');
 const euler6 = require('./modules/euler6');
 const euler7 = require('./modules/euler7');
 const euler8 = require('./modules/euler8');
+const euler9 = require('./modules/euler9');
+const euler10 = require('./modules/euler10');
+const euler11 = require('./modules/euler11');
 
 //////////////////////
 //Files
@@ -100,8 +103,11 @@ server.listen(8000, '127.0.0.1', () => {
 //euler1();
 //euler2();
 //euler3(600851475143);
-euler4(2);
+//euler4(2);
 //euler5(1, 20);
 //euler6();
 //euler7(10001);
-euler8();
+//euler8(13);
+//euler9(1000);
+//euler10(2000000);
+euler11();
