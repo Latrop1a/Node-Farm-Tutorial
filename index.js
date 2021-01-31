@@ -15,6 +15,7 @@ const euler8 = require('./modules/euler8');
 const euler9 = require('./modules/euler9');
 const euler10 = require('./modules/euler10');
 const euler11 = require('./modules/euler11');
+const euler12 = require('./modules/euler12');
 
 //////////////////////
 //Files
@@ -56,11 +57,11 @@ const tempCard = fs.readFileSync(
 const data = fs.readFileSync(`${__dirname}/dev-data/data2.json`, 'utf-8');
 const dataObj = JSON.parse(data);
 
-const slugs = dataObj.map((el) => slugify(el.productName, { lower: true }));
+const slugs = dataObj.map(el => slugify(el.productName, { lower: true }));
 
-const addSlugs = (slugArray) => {
+const addSlugs = slugArray => {
   let x = 0;
-  slugArray.forEach((element) => {
+  slugArray.forEach(element => {
     dataObj[x].slug = element;
     x++;
   });
@@ -72,9 +73,7 @@ const server = http.createServer((req, res) => {
   // OVERVIEW PAGE
   if (pathname === '/overview' || pathname === '/') {
     res.writeHead(200, { 'Content-type': 'text/html' });
-    const cardsHTML = dataObj
-      .map((el) => replaceTemplate(tempCard, el))
-      .join('');
+    const cardsHTML = dataObj.map(el => replaceTemplate(tempCard, el)).join('');
     const overview = tempOverview.replace('{%PRODUCT_CARDS%}', cardsHTML);
     res.end(overview);
 
@@ -108,6 +107,6 @@ server.listen(8000, '127.0.0.1', () => {
 //euler6();
 //euler7(10001);
 //euler8(13);
-//euler9(1000);
+euler9(1000);
 //euler10(2000000);
-euler11();
+//euler11();

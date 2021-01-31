@@ -21,7 +21,7 @@ module.exports = function () {
   console.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
 };
 
-// calculates diagonal, vertical and horizontal pairs of xx 2darray
+// calculates diagonal, vertical and horizontal pairs of ij 2d-array
 const array2dCalc = (array2d, countOfnumbers) => {
   let biggestProduct = 1;
 
@@ -29,7 +29,7 @@ const array2dCalc = (array2d, countOfnumbers) => {
   //then get products by going the countOfnumbers in the directions
   //check via if clauses if its still inside array
   for (let i = 0; i < array2d.length; i++) {
-    for (let j = 0; j < array2d.length; j++) {
+    for (let j = 0; j < array2d[i].length; j++) {
       // ready for the 4 possible products
       let productHorizontal = 1;
       let productVertical = 1;
