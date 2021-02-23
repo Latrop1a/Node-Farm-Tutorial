@@ -6,10 +6,10 @@ module.exports = function () {
   let biggestProduct = 0;
   let string = fs.readFileSync(`./txt/euler11.txt`, 'utf-8');
 
-  //splits matrix into 20 strings on linebreak
+  //splits matrix into array w/ 20 strings on linebreak
   //then splits those into 20 values creating a 2d array 20x20
   let stringArr = string.split('\n');
-  let stringArr2 = stringArr.map((ele) => {
+  let stringArr2 = stringArr.map(ele => {
     return ele.split(' ');
   });
 

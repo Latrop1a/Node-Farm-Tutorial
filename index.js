@@ -16,6 +16,7 @@ const euler9 = require('./modules/euler9');
 const euler10 = require('./modules/euler10');
 const euler11 = require('./modules/euler11');
 const euler12 = require('./modules/euler12');
+const codewars = require('./modules/codewars.js');
 
 //////////////////////
 //Files
@@ -110,3 +111,4 @@ server.listen(8000, '127.0.0.1', () => {
 euler9(1000);
 //euler10(2000000);
 //euler11();
+codewars(10);
