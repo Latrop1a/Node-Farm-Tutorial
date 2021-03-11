@@ -4,8 +4,43 @@ module.exports = function (limit) {
   let hrstart = process.hrtime();
 
   hrend = process.hrtime(hrstart);
-  checkOutKata([2, 2, 3, 3, 4, 4, 3, 7], 3);
+  maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]);
   console.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
+};
+
+// finds the sequence with max sum in an array
+const maxSequence = arr => {
+  let maxSequence = [0];
+  let tempMaxSequence;
+  //looping through sub array startpoints
+  for (let i = 0; i < arr.length; i++) {
+    const ele = arr[i];
+    tempMaxSequence = [ele];
+    if (checkBiggerArr(tempMaxSequence, maxSequence)) {
+      maxSequence = tempMaxSequence;
+    }
+    //looping every sequence length
+    for (let k = i + 1; k < arr.length; k++) {
+      tempMaxSequence.push(arr[k]);
+      // checking if temp sequence is bigger
+      if (checkBiggerArr(tempMaxSequence, maxSequence)) {
+        maxSequence = tempMaxSequence;
+      }
+    }
+  }
+  console.log(
+    maxSequence,
+    maxSequence.reduce((a, b) => a + b)
+  );
+  return maxSequence.reduce((a, b) => a + b);
+};
+
+const checkBiggerArr = (arr1, arr2) => {
+  let arr1Sum = 0;
+  let arr2Sum = 0;
+  arr1.forEach(ele => (arr1Sum += ele));
+  arr2.forEach(ele => (arr2Sum += ele));
+  return arr1Sum > arr2Sum;
 };
 
 //checkkOut time kata
@@ -13,7 +48,6 @@ const checkOutKata = (customers, n) => {
   let maxQueueTime = 0;
   //creates array with n-elements and fills with initial value to reduce
   let queues = new Array(n).fill([0]);
-  console.log(queues, 'test1');
 
   //func to put customer time into smalles of n-arrays
   const putIntoSmallestArray = num => {
@@ -22,21 +56,20 @@ const checkOutKata = (customers, n) => {
 
     // iterating over all the inner arrays to get minTime
     for (let i = 1; i < queues.length; i++) {
-      const ele = queues[i];
-      const eleTime = ele.reduce((a, b) => a + b);
+      //getting queue time
+      const eleTime = queues[i].reduce((a, b) => a + b);
       //checks if current queue is smaller than the others
       if (eleTime < smallestQueueTime) {
         smallestQueueTime = eleTime;
         smallestQueue = i;
       }
     }
+    //push into smallest queue
     queues[smallestQueue].push(num);
   };
 
   //putting customers into queues
-  customers.forEach(ele => {
-    putIntoSmallestArray(ele);
-  });
+  customers.forEach(ele => putIntoSmallestArray(ele));
   console.log(queues, 'final');
 
   //checking for max QueueTime
